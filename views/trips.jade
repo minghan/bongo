@@ -67,7 +67,9 @@ block head_extra
             $('#place #title').html('');
             $('#place p').html('');
             $('#place #loading').show();
-            $('#place .photos img').remove();
+            $('#place #map').attr('src','').hide();
+            $('#place .photos').find('img').remove();
+            $('#place .photos').hide();
             
             var city = encodeURIComponent($('#h1_city').html());
             var place = encodeURIComponent($(this).attr('title'));
@@ -79,7 +81,7 @@ block head_extra
               if (data.foursquare.venue.location.address) {
                 var address = data.foursquare.venue.location.address + ', ' + data.foursquare.venue.location.city + ', ' + data.foursquare.venue.location.state + ' ' + data.foursquare.venue.location.postalCode;
                 $('#place p').html(address  + ' &nbsp; &middot; &nbsp; ' + data.foursquare.venue.stats.checkinsCount + ' check-ins');
-                $('#place #map').attr('src', 'http://maps.google.com/maps/api/staticmap?center=' + address + '&zoom=15&size=520x250&markers=color:pink%7C' + address + '&sensor=true');
+                $('#place #map').attr('src', 'http://maps.google.com/maps/api/staticmap?center=' + address + '&zoom=15&size=520x250&markers=color:pink%7C' + address + '&sensor=true').show();
               } else {
                 $('#place p').html(data.foursquare.venue.stats.checkinsCount + ' check-ins');
               }

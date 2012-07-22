@@ -104,6 +104,8 @@ p {
   padding-top: 20px;
   border-top: 1px solid #ddd;
   display: none;
+  height: 220px;
+  overflow: hidden;
 }
 
 .photos img {
