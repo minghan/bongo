@@ -82,15 +82,22 @@ exports.getPlaces = function(req, res) {
   var url = fsAPI+"near="+city+"&oauth_token="+token+"&limit="+50;
 
   request(url, function(err, resp, body) {
-    var body = JSON.parse(body);
-    var items = body.response.groups[0].items;
-    var list = [];
-    for (var i=0; i<items.length; i++) {
-      if(items[i].venue.name.toLowerCase().indexOf(query.toLowerCase()) != -1) {
-        list.push(items[i].venue.name);
+    try {
+      var body = JSON.parse(body);
+      if (body.response.groups.length <= 0) {
+        res.send([]);
       }
+      var items = body.response.groups[0].items;
+      var list = [];
+      for (var i=0; i<items.length; i++) {
+        if(items[i].venue.name.toLowerCase().indexOf(query.toLowerCase()) != -1) {
+          list.push(items[i].venue.name);
+        }
+      }
+      res.send(list);
+    } catch(err) {
+      res.send([]);
     }
-    res.send(list);
   });
 
   /* Yahoo */

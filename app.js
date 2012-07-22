@@ -109,7 +109,9 @@ io.sockets.on('connection', function (socket) {
   socket.on('push_add_place', function(data) {
     if (trip !== undefined) {
     
-      var p = trip.registerPlace(data.place, connID);
+      var _p = trip.registerPlace(data.place, connID, data.dump);
+      var p = _p.place;
+      var inpos = _p.inpos;
 
       // broadcast
       for (var usr in trip.users) {
