@@ -37,12 +37,7 @@ exports.process = function(req, res) {
 
 exports.trips = function(req, res) {
   console.log('sessionID:' + req.sessionID);
-  var url = req.originalUrl;
-  var tid = url.split('/');
-  var ind = tid.length - 1;
-  if (tid[ind] == '') ind--;
-  var tid = tid[ind];
-  var trip = globals.trips.getTrip(tid);
+  var trip = globals.trips.getTripByUrl(req.originalUrl);
   var city = (trip === undefined) ? "Not Found" : trip.city;
   console.log("parsed: " + city);
   res.render('trips', {city: city});
