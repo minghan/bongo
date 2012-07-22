@@ -29,6 +29,7 @@ exports.index = function(req, res) {
 
 exports.process = function(req, res) {
   var city = req.param('city', 'San Francisco, CA');
+  console.log("processing: " + city);
   var hash = city_hash(city);
   console.log('hash: ' + hash);
   globals.trips.register(hash, city);
@@ -37,7 +38,15 @@ exports.process = function(req, res) {
 
 exports.trips = function(req, res) {
   console.log('sessionID:' + req.sessionID);
-  res.render('trips', {});
+  var url = req.originalUrl;
+  var tid = url.split('/');
+  var ind = tid.length - 1;
+  if (tid[ind] == '') ind--;
+  var tid = tid[ind];
+  var trip = globals.trips.getTrip(tid);
+  var city = (trip === undefined) ? "Not Found" : trip.city;
+  console.log("parsed: " + city);
+  res.render('trips', {city: city});
 }
 
 /*
