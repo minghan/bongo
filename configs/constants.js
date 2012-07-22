@@ -3,7 +3,7 @@ module.exports.foursquare = {
   clientSecret : "QHF3Q1P3ES10MWYILQ04Y2B2P4SYSXXBEWIFDAN1GYRVK2A4",
   code : "3P52ZRUWWOZD002IR2NNA1RBMRCQYAC2KYBTZ2GLBCV20VYR",
   access_token : "SD2I3TTWPG2FW13WOCXW5UJ5LCJKSSCR1HCRU5LUYVOA20SZ",
-  venueAPI : "https://api.foursquare.com/v2/venues/search?"
+  venueAPI : "https://api.foursquare.com/v2/venues/explore?"
 }
 
 module.exports.mailjet = {
