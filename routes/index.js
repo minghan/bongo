@@ -61,11 +61,24 @@ exports.foobar = function(req, res){
 exports.getIter = function(req, res) {
   var Iter = require('../models/iter');
   var constants = require("../configs/constants");
+  var request = require('request');
+  var _ = require('underscore');
+  var fs = require('fs');
 
-  var fs = constants.foursquare;
+  var foursquare = constants.foursquare;
 
-  res.render('foobar', { 
-        // title : "FOO"
-        title : fs.access_token
-      });
+  var city = "Sunnyvale,CA";
+  var fsAPI = foursquare.venueAPI;
+  var token = foursquare.access_token;
+  var url = fsAPI+"near="+city+"&oauth_token="+token;
+
+  request(url, function(err, resp, body) {
+    var body = JSON.parse(body);
+    var first = body.response.groups[0].items[0].name;
+    res.render('foobar', { 
+          title : "FOO",
+          url : first
+        });
+  });
 }
+

@@ -1,0 +1,52 @@
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0px;
+  }
+
+  .bold  {
+    font-weight: bold;
+  }
+</style>
+
+<script>
+jQuery(function () 
+ {
+   jQuery("#project").autocomplete({
+    source: function (request, response) {
+     jQuery.getJSON(
+      "http://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US&q="+request.term,
+      function (data) {
+       response(data);
+      }
+     );
+    },
+    minLength: 3,
+    select: function (event, ui) {
+     var selectedObj = ui.item;
+     jQuery("#project").val(selectedObj.value);
+     return false;
+    },
+    open: function (event, ui) {
+      var query = $(this).val();
+      $('li a.ui-corner-all').each(function(data, val) {
+        var choice = $(this).text();
+        // console.log(choice.replace(query, "<b>"+choice+"</b>"));
+        // $(this).html(choice.replace(query, "<span class='bold'>"+query+"</span>"));
+        $(this).html(choice.replace(query, "<b>"+query+"</b>"));
+      })
+     jQuery(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+    },
+    close: function () {
+     jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+    }
+   });
+   jQuery("#project").autocomplete("option", "delay", 100);
+  });
+</script>
+
+<input id="project"/>
+  
