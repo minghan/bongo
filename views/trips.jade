@@ -2,19 +2,32 @@ extends layout
 
 block head_extra
   <script src="/socket.io/socket.io.js"></script>
-  script(type='text/javascript')
+
+  script
     var socket = io.connect('http://127.0.0.1:3000');
-    console.log(socket.id);
     var tid = window.location.pathname.split('/');
     var ind = tid.length - 1;
     if (tid[ind] == '') ind--;
-    socket.emit('init', {tripID: tid[ind]});
+    tid = tid[ind];
+    socket.emit('init', {tripID: tid});
+    socket.on('init_feedback', function(data){
+      console.log(data);
+    });
 
     socket.emit('push_set_handle', {handle: 'mteh'});
 
+    var connid;
+    var handle;
     socket.on('pull_change_handle', function(data){
       console.log(data);
     });
+
+
+    var city = "#{city}";
+    $(document).ready(function(){
+      $("#h1_city").text(city);
+    });
+    /*console.log(socket.socket.transport.sessid);*/
 
 block content
   include includes/trips.html
