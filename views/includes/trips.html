@@ -8,6 +8,8 @@
         <div class="online">
           <a href="#invite" rel="facebox">Invite someone</a>
           <h1>Currently online</h1>
+          <div id="onlinebox"></div>
+          <!--
           <div class="viewer usr1">
             Kah Hong Tay
           </div>
@@ -17,6 +19,7 @@
           <div class="viewer usr3">
             Dante Tran
           </div>
+          -->
           <div id="invite">
             <h2>Invite someone <span style="font-weight: normal">or share this link:</span> <span id="mylink"></span></h2>
             <input type="text" name="email" class="email-invite tk-proxima-nova" placeholder="Enter your friend's email address"/>
@@ -25,7 +28,7 @@
               $(document).ready(function(){
                   $('#mylink').text(window.location.href);
                   $('input[type=text]').focus();
-                  
+
                   $('input[type=submit]').click(function() {
                     console.log($(this).prev().val());
                   })
