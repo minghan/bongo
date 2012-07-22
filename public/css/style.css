@@ -12,6 +12,7 @@ a {
   color: #00B7FF;
 }
 
+
 .wrapper {
   width: 100%;
   min-width: 1240px;
@@ -294,3 +295,27 @@ a {
 .viewer.usr6, .chat.usr6 {
   border-left: 8px solid #ad7339;
 }
+
+/* Splash page */
+li.ui-menu-item {
+    margin-bottom: 1px;
+}
+
+a.ui-corner-all:hover {
+    /* background-color: blue; */
+    cursor: pointer;
+}
+
+a.ui-corner-all.highlight {
+    background-color: blue;
+}
+
+a.ui-corner-all {
+  color: green;
+  background-color: white;
+  padding: 0px 10px;
+  display: block;
+  width : 300px;
+}
+
+
