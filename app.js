@@ -45,6 +45,7 @@ app.post('/process', routes.process);
 app.get('/trips/:tripid', routes.trips);
 app.get('/getPlaces/:city/:query', routes.getPlaces);
 app.get('/recommendation/:city', routes.recommendation);
+app.get('/getData/:city/:name', routes.getData);
 
 // app.get('/foobar/', routes.foobar);
 // app.get('/user/:id', routes.user);
