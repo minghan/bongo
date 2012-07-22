@@ -1,5 +1,6 @@
 $(document).ready(function() {
   checkResize();
+  $('input[type=text]').focus();
 
  	// Browser resize
  	$(window).resize(function() {
