@@ -99,13 +99,20 @@ block head_extra
 
       /*console.log(socket.socket.transport.sessid);*/
 
-
       $("#add_place").keyup(function(event){
         if(event.keyCode == 13){
           var val = $('#add_place').val();
           if (val != '') {
             $('#add_place').val('');
-            socket.emit('push_add_place', {place: val});
+
+            // fetch the shit
+            var url = "/getData/" + city + "/" + val;
+            /*var url = "https://api.foursquare.com/v2/venues/explore?near=" + encodeURI(city) + "&query=" + encodeURI(val) + "&oauth_token=SD2I3TTWPG2FW13WOCXW5UJ5LCJKSSCR1HCRU5LUYVOA20SZ&limit=50";*/
+
+            $.get(url, function(data) {
+                console.log(data);
+                socket.emit('push_add_place', {place: val, dump: data});
+            });
           }
         }
       });
