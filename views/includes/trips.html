@@ -25,6 +25,10 @@
               $(document).ready(function(){
                   $('#mylink').text(window.location.href);
                   $('input[type=text]').focus();
+                  
+                  $('input[type=submit]').click(function() {
+                    console.log($(this).prev().val());
+                  })
               })
             </script>
           </div>
