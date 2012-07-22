@@ -15,18 +15,51 @@ module.exports.all = {
   'randId': []
 };
 
-/*
-module.exports.trips = {
-  trips = []
+var handleCount = 1;
+function User(connID, socketf)
+{
+  this.connID = connID;
+  this.socketf = socketf;
 
-  each trip:
-    tripid
-    channel
-    active_users = {
-     session ids:[ ]
-       each session id:
-        - sess id
-        - handle
-    }
+  handleCount++;
+  this.handle = "user" + handleCount.toString();
+
+  this.getHandle = function(){
+    return this.handle;
+  }
+
+  this.setHandle = function(handle){
+    this.handle = handle;
+  }
 }
-*/
+
+function Trip(tripID, city)
+{
+  this.tripID = tripID;
+  this.city = city;
+  this.users = {};
+  // this.channel = [];
+}
+
+Trip.prototype = {
+  addUser: function(connID, socketf) {
+    this.users[connID] = new User(connID, socketf);
+    console.log("adding conn " + connID + " to " + this.tripID);
+  }
+}
+
+module.exports.trips = {
+
+  trips: {},
+  
+  register: function(tripID, city) {
+    this.trips[tripID] = new Trip(tripID, city);
+    console.log("registered: " + tripID);
+  },
+
+  getTrip: function(tripID) {
+    return this.trips[tripID];
+  }
+
+};
+
