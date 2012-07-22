@@ -7,11 +7,54 @@ block head_extra
     var city = "#{city}";
     var socket = io.connect('http://127.0.0.1:3000');
 
+    var current_users = [];
     var connID;
     /*var handle;*/
 
     $(document).ready(function(){
       $("#h1_city").text(city);
+
+      var userCount = 0;
+      function add_user(data) {
+        userCount = userCount+1;
+        data.num = userCount;
+        var div = $("<div class='viewer usr" + data.num +  "' id='usr" + data.connID + "'></div>");
+        div.text(data.handle);
+        $('#onlinebox').append(div);
+        current_users.push(data);
+      }
+
+      var placeCount = 0;
+      var dayCount = 0;
+      function add_place(data) {
+        
+        // find user
+        var num = null;
+        for (var i in current_users) {
+            if (current_users[i].connID == data.connID) {
+                num = current_users[i].num;
+                break;
+            }
+        }
+
+        var div1 = $("<div></div>");
+        div1.addClass('event');
+        div1.addClass('hr3');
+        var div2 = $("<div></div>");
+        div2.addClass('usr' + num.toString());
+        var div3 = $("<div></div>");
+        div3.addClass('event-item');
+        var p = $('<p></p>');
+        p.text(data.place);
+        div3.append(p);
+        div2.append(div3);
+        div1.append(div2);
+
+        div1.css('display', 'none');
+        $("#day1").append(div1);
+
+        div1.slideDown('slow', function(){});
+      }
 
       var tid = window.location.pathname.split('/');
       var ind = tid.length - 1;
@@ -21,6 +64,11 @@ block head_extra
       socket.on('init_feedback', function(data){
         connID = data.connID;
         /*handle = data.handle;*/
+
+        for (i in data.current_users) {
+            var usr = data.current_users[i];
+            add_user(usr);
+        }
       });
 
       socket.emit('push_set_handle', {handle: 'mteh'});
@@ -31,12 +79,13 @@ block head_extra
         /*console.log(data);*/
       });
 
-      var userCount = 0;
       socket.on('pull_add_user', function(data){
-          userCount = userCount+1
-          var div = $("<div class='viewer usr" + userCount +  "' id='usr" + data.connID + "'></div>");
-          div.text(data.handle);
-          $('#onlinebox').append(div);
+        add_user(data);
+      });
+
+      socket.on('pull_add_place', function(data){
+        console.log('pull_add_place: ' + data.place);
+        add_place(data);
       });
 
       /*$('.email-submit').click(function(){console.log("Wer");});*/
@@ -46,7 +95,18 @@ block head_extra
 
       /*console.log(socket.socket.transport.sessid);*/
 
-      /*console.log("werwewerwer");*/
+
+      $("#add_place").keyup(function(event){
+        if(event.keyCode == 13){
+          var val = $('#add_place').val();
+          if (val != '') {
+            $('#add_place').val('');
+            socket.emit('push_add_place', {place: val});
+          }
+        }
+      });
+
+
     });
 
 

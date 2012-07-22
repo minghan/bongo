@@ -33,12 +33,25 @@ function User(connID, socketf)
   }
 }
 
+function Place(place, connID)
+{
+  this.place = place;
+  this.connID = connID;
+  this.dt = null;
+}
+
 function Trip(tripID, city)
 {
   this.tripID = tripID;
   this.city = city;
   this.users = {};
-  // this.channel = [];
+  this.places = [];
+
+  this.registerPlace = function(place, connID) {
+    var p = new Place(place, connID);
+    this.places.push(p);
+    return p;
+  }
 }
 
 Trip.prototype = {
