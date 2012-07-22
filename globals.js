@@ -62,8 +62,13 @@ function Place(place, connID, dump)
   this.connID = connID;
   this.dt = null;
   // console.log(dump);
-  this.lat = dump.foursquare.venue.location.lat;
-  this.lng = dump.foursquare.venue.location.lng;
+  try {
+    this.lat = dump.foursquare.venue.location.lat;
+    this.lng = dump.foursquare.venue.location.lng;
+  } catch (err) {
+    this.lat = 0;
+    this.lng = 0;
+  }
 
   console.log("latlng");
   console.log(this.lat);

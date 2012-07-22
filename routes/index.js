@@ -151,22 +151,29 @@ exports.getData = function(req, res) {
       "foursquare" : null,
       "instagram" : null
     };
-    var body = JSON.parse(body);
-    var items = body.response.groups[0].items;
-    for (var i=0; i< items.length; i++) {
-      if(items[i].venue.name == name) {
-        obj["foursquare"] = items[i];
-        var lat = items[i].venue.location.lat;
-        var lng = items[i].venue.location.lng;
-        var instagram_url = instagramAPI+"lat="+lat+"&lng="+lng+"&access_token="+instagram_token;
+    try {
+      var body = JSON.parse(body);
+      var items = body.response.groups[0].items;
+      for (var i=0; i< items.length; i++) {
+        if(items[i].venue.name == name) {
+          obj["foursquare"] = items[i];
+          var lat = items[i].venue.location.lat;
+          var lng = items[i].venue.location.lng;
+          var instagram_url = instagramAPI+"lat="+lat+"&lng="+lng+"&access_token="+instagram_token;
 
-        request(instagram_url, function(err, resp, body) {
-          var body = JSON.parse(body);
-          obj["instagram"] = body;
-          res.send(obj);
-        });
-        break;
+          request(instagram_url, function(err, resp, body) {
+            var body = JSON.parse(body);
+            obj["instagram"] = body;
+            res.send(obj);
+          });
+          break;
+        }
       }
+    } catch(err) {
+      res.send({
+        "foursquare" : null,
+        "instagram" : null
+      });
     }
   });
 }
