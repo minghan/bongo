@@ -14,3 +14,19 @@ module.exports.mailjet = {
 
 module.exports.session_secret = "Bongo is awesome";
 
+module.exports.yelp = {
+  consumer_key : "T5k3qNZr8GN-d00xDX05kg",
+  consumer_secret : "qGrUfnJoma5-Vt-q_60u4BkkLmY",
+  token : "v_3Clt0CblRdocsF2EtYrqgJ7sc_QLvg",
+  token_secret : "EQCeowdFdF0z2RKiiMCcS3tnz0Y",
+  searchAPI : "http://api.yelp.com/v2/search?"
+}
+
+module.exports.instagram = {
+  clientID : "a28e8272206b4034b414ff99222b1a09",
+  clientSecret : "edb723cce46c4544b98aafcdb62990b8",
+  code : "9fb4d2af0ac4486cbe03034cc90f217d",
+  access_token : "53366099.a28e827.2743cd6981dc4730a6ae04cf7e84ba8b",
+  geoAPI : "https://api.instagram.com/v1/media/search?"
+}
+

@@ -1,4 +1,20 @@
 extends layout
 
+block head_extra
+  <script src="/socket.io/socket.io.js"></script>
+  script(type='text/javascript')
+    var socket = io.connect('http://127.0.0.1:3000');
+    console.log(socket.id);
+    var tid = window.location.pathname.split('/');
+    var ind = tid.length - 1;
+    if (tid[ind] == '') ind--;
+    socket.emit('init', {tripID: tid[ind]});
+
+    socket.emit('push_set_handle', {handle: 'mteh'});
+
+    socket.on('pull_change_handle', function(data){
+      console.log(data);
+    });
+
 block content
   include includes/trips.html
