@@ -18,11 +18,14 @@
             Dante Tran
           </div>
           <div id="invite">
-            <h2>Invite someone <span style="font-weight: normal">or share this link:</span> http://</h2>
+            <h2>Invite someone <span style="font-weight: normal">or share this link:</span> <span id="mylink"></span></h2>
             <input type="text" name="email" class="email-invite tk-proxima-nova" placeholder="Enter your friend's email address"/>
             <input type="submit" class="tk-proxima-nova" value="INVITE" />
             <script type="text/javascript">
-              $(document).ready(function(){ $('input[type=text]').focus(); })
+              $(document).ready(function(){
+                  $('#mylink').text(window.location.href);
+                  $('input[type=text]').focus();
+              })
             </script>
           </div>
         </div>
