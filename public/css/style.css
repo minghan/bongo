@@ -115,9 +115,9 @@ a:hover {
 
 .email-invite {
   border: 1px solid #ccc;
-  margin: 15px 0;
-  padding: 10px;
-  width: 415px;
+  margin: 15px 5px 0 0;
+  padding: 9px 10px;
+  width: 350px;
   font-size: 15px;
   color: #333;;
 }
@@ -358,12 +358,11 @@ a:hover {
 /* -- Buttons -- */
 input[type=submit] {
   font-size: 16px;
-  margin-left: -1px;
-  padding: 6px 15px 5px;
+  padding: 8px 15px;
   color: white !important;
   text-shadow: 0 1px 1px #3a3a3a;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   background: url(/images/button-overlay.png) #1ad958;
   border: 1px solid #04a236;
   box-shadow: 0 1px 0px #028014;
