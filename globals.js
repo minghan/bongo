@@ -15,7 +15,7 @@ module.exports.all = {
   'randId': []
 };
 
-var handleCount = 1;
+var handleCount = 0;
 function User(connID, socketf)
 {
   this.connID = connID;

@@ -55,11 +55,13 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
+// var clients = {};
 io.sockets.on('connection', function (socket) {
 
   var connID = socket.id;
   var tripID = null;
   console.log(connID);
+  // clients[socket.id] = socket;
 
   socket.on('init', function(data) {
     console.log(data.tripID);
@@ -70,11 +72,23 @@ io.sockets.on('connection', function (socket) {
     if (trip === undefined) {
       console.log(tripID + " not found");
     } else {
-      var theuser = trip.addUser(connID, this);
+      console.log("this");
+      console.log(this);
+      var theuser = trip.addUser(connID, socket);
       socket.emit('init_feedback', {
         connID: theuser.connID,
         handle: theuser.handle
       });
+      
+      for (var usr in trip.users) {
+        console.log("usr: " + usr);
+        if (trip.users.hasOwnProperty(usr)) {
+          trip.users[usr].socketf.emit("pull_add_user", {
+            connID: theuser.connID,
+            handle: theuser.handle
+          });
+        }
+      }
     }
   });
 

@@ -4,30 +4,51 @@ block head_extra
   <script src="/socket.io/socket.io.js"></script>
 
   script
-    var socket = io.connect('http://127.0.0.1:3000');
-    var tid = window.location.pathname.split('/');
-    var ind = tid.length - 1;
-    if (tid[ind] == '') ind--;
-    tid = tid[ind];
-    socket.emit('init', {tripID: tid});
-    socket.on('init_feedback', function(data){
-      console.log(data);
-    });
-
-    socket.emit('push_set_handle', {handle: 'mteh'});
-
-    var connid;
-    var handle;
-    socket.on('pull_change_handle', function(data){
-      console.log(data);
-    });
-
-
     var city = "#{city}";
+    var socket = io.connect('http://127.0.0.1:3000');
+
+    var connID;
+    /*var handle;*/
+
     $(document).ready(function(){
       $("#h1_city").text(city);
+
+      var tid = window.location.pathname.split('/');
+      var ind = tid.length - 1;
+      if (tid[ind] == '') ind--;
+      tid = tid[ind];
+      socket.emit('init', {tripID: tid});
+      socket.on('init_feedback', function(data){
+        connID = data.connID;
+        /*handle = data.handle;*/
+      });
+
+      socket.emit('push_set_handle', {handle: 'mteh'});
+
+      var connid;
+      var handle;
+      socket.on('pull_change_handle', function(data){
+        /*console.log(data);*/
+      });
+
+      var userCount = 0;
+      socket.on('pull_add_user', function(data){
+          userCount = userCount+1
+          var div = $("<div class='viewer usr" + userCount +  "' id='usr" + data.connID + "'></div>");
+          div.text(data.handle);
+          $('#onlinebox').append(div);
+      });
+
+      /*$('.email-submit').click(function(){console.log("Wer");});*/
+      /*$('.email-submit').click(function(){*/
+          /*console.log('wrf');*/
+      /*});*/
+
+      /*console.log(socket.socket.transport.sessid);*/
+
+      /*console.log("werwewerwer");*/
     });
-    /*console.log(socket.socket.transport.sessid);*/
+
 
 block content
   include includes/trips.html
