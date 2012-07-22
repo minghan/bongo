@@ -379,12 +379,12 @@ input[type=submit]:hover {
 /* Splash page */
 li.ui-menu-item {
   background: #fff;
-  width : 501px;
 }
 
 a.ui-corner-all:hover {
   /* background-color: blue; */
   cursor: pointer;
+  text-decoration: none;
 }
 
 a.ui-corner-all.highlight {
@@ -397,7 +397,11 @@ a.ui-corner-all {
   background-color: white;
   padding: 15px 10px;
   display: block;
-  width : 501px !important;
+}
+
+/* -- Main panel typeahead -- */
+.main-panel a.ui-corner-all, .main-panel li.ui-menu-item {
+  width: 339px !important;
 }
 
 

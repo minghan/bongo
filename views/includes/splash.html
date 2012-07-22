@@ -46,6 +46,9 @@
       },
       open: function (event, ui) {
         $('.ui-autocomplete').css({ 'width': '501px' });
+        $('li.ui-menu-item').css({ 'width': '501px' });
+        $('a.ui-corner-all').css({ 'width': '501px' });
+        
         var query = $(this).val();
         $('li a.ui-corner-all').addClass('tk-proxima-nova').each(function(data, val) {
           var choice = $(this).text();
