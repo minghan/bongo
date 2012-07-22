@@ -1,3 +1,5 @@
+@import url(reset.css);
+
 html { 
   background: url(/images/splash.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -13,4 +15,285 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+.wrapper {
+  width: 100%;
+  min-width: 1240px;
+  min-height: 600px;
+  padding: 10px;
+}
+
+.main-wrapper {
+  width: 26%;
+  min-width: 320px;
+  padding: 1%;
+  height: 96%;
+  box-shadow: 0 1px 0 #3a3a3a;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  float: left;
+  background: #fff;
+  border-right: 1px solid #3a3a3a;
+}
+
+.main-panel {
+  padding: 10px 20px;
+}
+
+.logo {
+  width: 120px;
+  display: block;
+  margin-bottom: 50px;
+}
+
+.main-panel .search {
+  border: 3px solid #999;
+  padding: 10px 4%;
+  width: 100%;
+  margin-left: -4%;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 50px;
+}
+
+/* -- Chat -- */
+.main-panel .chat-wrapper .online {
+  height: 150px;
+}
+
+.chat-wrapper h1 {
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 4%;
+  padding-bottom: 10px;
+  margin-left: -4%;
+  width: 104%;
+}
+
+.chat-wrapper .viewer {
+  padding-left: 2%;
+  margin-top: 10px;
+  font-size: 15px;
+  width: 103%;
+}
+
+.chat-box {
+  padding: 10px 4%;
+  width: 100%;
+  height: 200px;
+  margin-left: -4%;
+  border-bottom: 1px solid #ddd;
+  overflow-y: scroll;
+}
+
+.chat {
+  padding-left: 2%;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+
+
+/* -- Calendar -- */
+.calendar-wrapper {
+  width: 70%;
+  min-width: 840px;
+  height: 96%;
+  padding: 1%;
+  float: left;
+  box-shadow: 0 1px 0 #3a3a3a;
+  background: url(/images/bg.png);
+}
+
+.calendar-header {
+  height: 48px;
+}
+
+.calendar-main {
+  height: 93%;
+  overflow-y: scroll;
+}
+
+.time-wrapper {
+  width: 4.5%;
+  height: 100%;
+  float: left;
+}
+
+.time-grey {
+  width: 100%;
+  height: 100%;
+}
+
+.time {
+  width: 100%;
+  height: 20px;
+  padding: 9px 0 7px 0;
+  float: left;
+  color: #fff;
+  margin: 0 0  1px 0;
+  text-align: center;
+  display: inline-block;
+}
+
+.day {
+  width: 31.7%;
+  margin: 0 0.2% 0 0;
+  height: 100%;
+  float: left;
+  background: #fafafa;
+}
+
+.calendar-main .day {
+  height: 666px;
+  margin-top: 1px;
+}
+
+.day-header {
+  height: 100%;
+  border-top: 1px solid #eab156;
+  border-left: 2px solid #dda346;
+  border-right: 1px solid #a7792f;
+  border-bottom: 1px solid #996c24;
+  background: url(/images/calendar-header.png);
+}
+
+.day-header p {
+  text-align: center;
+  color: #fff5e4;
+  position: relative;
+  top: 30%;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 #774a02;
+  letter-spacing: 1px;
+}
+
+.day-header .stitch {
+  position: relative;
+  top: 27px;
+  border-bottom: 1px dashed #d89e42;
+}
+
+.event {
+  width: 100%;
+  float: left;
+  color: #333;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  background: #f0f0f0;
+}
+
+.event:hover {
+  background: #ddd;
+}
+
+.event.blank {
+  background: none;
+}
+
+.event-item {  
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.event img {
+  width: 50px;
+  height: 50px;
+  float: right;
+  border: 3px solid #fff;
+  margin-top: -2px;
+  box-shadow: 0 1px 0 #bababa;
+}
+
+/* -- Calendar blocks */
+.hr1 {
+  height: 36px;
+}
+
+.hr2 {
+  height: 73px;
+}
+
+.hr3 {
+  height: 110px;
+}
+
+.hr4 {
+  height: 147px;
+}
+
+.hr5 {
+  height: 184px;
+}
+
+.hr6 {
+  height: 221px;
+}
+
+.hr7 {
+  height: 258px;
+}
+
+/* -- User colors */
+/* -- 1st user -- */
+.event .usr1 {
+  height: 100%;
+  border-right: 8px solid #ff2172;
+}
+
+.viewer.usr1, .chat.usr1 {
+  border-left: 8px solid #ff2172;
+}
+
+/* -- 2nd user -- */
+.event .usr2 {
+  height: 100%;
+  border-right: 8px solid #ff9061;
+}
+
+.viewer.usr2, .chat.usr2 {
+  border-left: 8px solid #ff9061;
+}
+
+/* -- 3rd user -- */
+.event .usr3 {
+  height: 100%;
+  border-right: 8px solid #2ec4c9;
+}
+
+.viewer.usr3, .chat.usr3 {
+  border-left: 8px solid #2ec4c9;
+}
+
+/* -- 4th user -- */
+.event .usr4 {
+  height: 100%;
+  border-right: 8px solid #14cf34;
+}
+
+.viewer.usr4, .chat.usr4 {
+  border-left: 8px solid #14cf34;
+}
+
+/* -- 5th user -- */
+.event .usr5 {
+  height: 100%;
+  border-right: 8px solid #9b3db8;
+}
+
+.viewer.usr5, .chat.usr5 {
+  border-left: 8px solid #9b3db8;
+}
+
+/* -- 6th user -- */
+.event .usr6 {
+  height: 100%;
+  border-right: 8px solid #ad7339;
+}
+
+.viewer.usr6, .chat.usr6 {
+  border-left: 8px solid #ad7339;
 }
