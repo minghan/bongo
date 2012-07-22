@@ -43,8 +43,10 @@ function Trip(tripID, city)
 
 Trip.prototype = {
   addUser: function(connID, socketf) {
-    this.users[connID] = new User(connID, socketf);
+    var theuser = new User(connID, socketf);
+    this.users[connID] = theuser;
     console.log("adding conn " + connID + " to " + this.tripID);
+    return theuser;
   }
 }
 

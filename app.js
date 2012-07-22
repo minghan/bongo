@@ -70,7 +70,11 @@ io.sockets.on('connection', function (socket) {
     if (trip === undefined) {
       console.log(tripID + " not found");
     } else {
-      trip.addUser(connID, this);
+      var theuser = trip.addUser(connID, this);
+      socket.emit('init_feedback', {
+        connID: theuser.connID,
+        handle: theuser.handle
+      });
     }
   });
 

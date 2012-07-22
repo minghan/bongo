@@ -23,7 +23,7 @@ function city_hash(city) {
 }
 
 exports.index = function(req, res) {
-  console.log('sessionID:' + req.sessionID);
+  console.log('sessionID: ' + req.sessionID);
   res.render('splash', {});
 };
 
@@ -37,7 +37,15 @@ exports.process = function(req, res) {
 
 exports.trips = function(req, res) {
   console.log('sessionID:' + req.sessionID);
-  res.render('trips', {});
+  var url = req.originalUrl;
+  var tid = url.split('/');
+  var ind = tid.length - 1;
+  if (tid[ind] == '') ind--;
+  var tid = tid[ind];
+  var trip = globals.trips.getTrip(tid);
+  var city = (trip === undefined) ? "Not Found" : trip.city;
+  console.log("parsed: " + city);
+  res.render('trips', {city: city});
 }
 
 /*
@@ -55,8 +63,6 @@ exports.invite_process = function(req, res){
     };
 
     // emailServer.send(message, function(err, message){console.log(err || message)});
-
-    
   }
 }
 
