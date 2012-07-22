@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('input[type=text]').focus();
   
   // Facebox
-  $('a[rel*=facebox]').facebox()  
+  $('a[rel*=facebox]').facebox();
 
  	// Browser resize
  	$(window).resize(function() {
