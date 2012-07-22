@@ -40,6 +40,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.post('/process', routes.process);
 app.get('/trips/:tripid', routes.trips);
+app.get('/getPlaces/:query', routes.getPlaces);
 
 // app.get('/foobar/', routes.foobar);
 // app.get('/user/:id', routes.user);
