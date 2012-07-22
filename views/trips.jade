@@ -69,6 +69,10 @@ block head_extra
             var usr = data.current_users[i];
             add_user(usr);
         }
+        for (i in data.current_places) { 
+            var p = data.current_places[i];
+            add_place(p);
+        }
       });
 
       socket.emit('push_set_handle', {handle: 'mteh'});
@@ -105,8 +109,6 @@ block head_extra
           }
         }
       });
-
-
     });
 
 
