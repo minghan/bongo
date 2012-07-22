@@ -46,7 +46,7 @@ app.get('/trips/:tripid', routes.trips);
 
 // app.get('/foobar/', routes.foobar);
 // app.get('/user/:id', routes.user);
-// app.get('/iter/', routes.getIter);
+app.get('/iter/', routes.getIter);
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);

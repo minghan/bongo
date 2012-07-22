@@ -1,0 +1,5 @@
+curl \-F 'client_id=a28e8272206b4034b414ff99222b1a09' \
+    -F 'client_secret=edb723cce46c4544b98aafcdb62990b8' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=http://trybongo.com' \
+    -F 'code=9fb4d2af0ac4486cbe03034cc90f217d' \https://api.instagram.com/oauth/access_token
