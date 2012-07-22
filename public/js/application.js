@@ -1,6 +1,9 @@
 $(document).ready(function() {
   checkResize();
-  $('input[type=text]').focus();  
+  $('input[type=text]').focus();
+  
+  // Facebox
+  $('a[rel*=facebox]').facebox()  
 
  	// Browser resize
  	$(window).resize(function() {

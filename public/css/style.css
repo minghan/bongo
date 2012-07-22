@@ -1,4 +1,5 @@
 @import url(reset.css);
+@import url(facebox.css);
 
 html { 
   background: url(/images/splash.jpg) no-repeat center center fixed; 
@@ -6,6 +7,15 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+a {
+  color: #36A9E2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* -- Splash -- */
@@ -45,10 +55,6 @@ html {
   height: 46px;
   margin-bottom: -16px;
   margin-left: -5px;
-}
-
-a {
-  color: #00B7FF;
 }
 
 
@@ -102,6 +108,25 @@ a {
 }
 
 
+/* -- Invite -- */
+#invite {
+  display: none;
+}
+
+.email-invite {
+  border: 1px solid #ccc;
+  margin: 15px 0;
+  padding: 10px;
+  width: 415px;
+  font-size: 15px;
+  color: #333;;
+}
+
+.email-button {
+  height: 41px;
+  margin-bottom: -15px;
+}
+
 /* -- Chat -- */
 .main-panel .chat-wrapper .online {
   height: 150px;
@@ -112,6 +137,10 @@ a {
   margin-top: 10px;
   font-size: 15px;
   width: 103%;
+}
+
+.chat-wrapper a[rel=facebox] {
+  float: right;
 }
 
 .chat-box {
@@ -323,6 +352,28 @@ a {
 
 .viewer.usr6, .chat.usr6 {
   border-left: 8px solid #ad7339;
+}
+
+
+/* -- Buttons -- */
+input[type=submit] {
+  font-size: 16px;
+  margin-left: -1px;
+  padding: 6px 15px 5px;
+  color: white !important;
+  text-shadow: 0 1px 1px #3a3a3a;
+  text-decoration: none;
+  border-radius: 6px;
+  background: url(/images/button-overlay.png) #1ad958;
+  border: 1px solid #04a236;
+  box-shadow: 0 1px 0px #028014;
+  -moz-box-shadow: 0 1px 0px #028014;
+  -webkit-box-shadow: 0 1px 0px #028014;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-image: url(/images/button-overlay-reverse.png);
 }
 
 /* Splash page */
