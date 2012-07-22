@@ -1,8 +1,7 @@
 
 /*
  * GET home page.
- */
-
+ */ 
 
 var globals = require('../globals');
 
@@ -70,11 +69,11 @@ exports.invite_process = function(req, res){
 exports.getPlaces = function(req, res) {
   var constants = require("../configs/constants");
   var request = require('request');
-  var query = req.params.query
+  var query = req.params.query;
+  var city = req.params.city;
 
   /* foursquare */
   var foursquare = constants.foursquare;
-  var city = "Sunnyvale,CA";
   var fsAPI = foursquare.venueAPI;
   var token = foursquare.access_token;
   var url = fsAPI+"near="+city+"&oauth_token="+token;
@@ -82,12 +81,36 @@ exports.getPlaces = function(req, res) {
   request(url, function(err, resp, body) {
     var body = JSON.parse(body);
     var items = body.response.groups[0].items;
-    // res.send({"status" : "OK"});
     var list = [];
     for (var i=0; i<items.length; i++) {
-        // list.push(items[i].name);
       if(items[i].name.toLowerCase().indexOf(query.toLowerCase()) != -1) {
         list.push(items[i].name);
+      }
+    }
+    res.send(list);
+    // res.send(query);
+  });
+}
+
+exports.recommendation = function(req, res) {
+  var constants = require("../configs/constants");
+  var request = require('request');
+  var limit = 20;
+  var city = req.params.city;
+
+  /* foursquare */
+  var foursquare = constants.foursquare;
+  var fsAPI = foursquare.venueAPI;
+  var token = foursquare.access_token;
+  var url = fsAPI+"near="+city+"&oauth_token="+token;
+  
+  request(url, function(err, resp, body) {
+    var body = JSON.parse(body);
+    var items = body.response.groups[0].items;
+    var list = [];
+    for (var i=0; i<items.length; i++) {
+      if(i < limit) {
+        list.push(items[i]);
       }
     }
     res.send(list);

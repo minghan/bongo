@@ -1,15 +1,16 @@
 jQuery(function () 
  {
+   var city = $('#h1_city').text();
    jQuery("#add_place").autocomplete({
     source: function (request, response) {
      jQuery.getJSON(
-      "/getPlaces/"+request.term,
+      "/getPlaces/"+encodeURIComponent(city)+"/"+request.term,
       function (data) {
        response(data);
       }
      );
     },
-    minLength: 3,
+    minLength: 1,
     select: function (event, ui) {
       var value = ui.item.value;
       // value = value.substr(0, value.lastIndexOf(","));

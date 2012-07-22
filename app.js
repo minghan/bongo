@@ -43,7 +43,8 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.post('/process', routes.process);
 app.get('/trips/:tripid', routes.trips);
-app.get('/getPlaces/:query', routes.getPlaces);
+app.get('/getPlaces/:city/:query', routes.getPlaces);
+app.get('/recommendation/:city', routes.recommendation);
 
 // app.get('/foobar/', routes.foobar);
 // app.get('/user/:id', routes.user);
