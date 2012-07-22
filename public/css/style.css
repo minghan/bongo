@@ -11,7 +11,7 @@ html {
 /* -- Splash -- */
 .splash-wrapper .splash {
   margin: 200px auto 0;
-  width: 680px;
+  width: 590px;
   padding: 40px 50px 50px;
   background: url(/images/bg-black.png);
   box-shadow: 0 1px 0 #333;
@@ -26,9 +26,9 @@ html {
 }
 
 .splash h1 {
-  font-size: 54px;
+  font-size: 44px;
   color: #ffca04;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 }
 
 .splash input[type=text] {
@@ -143,14 +143,8 @@ a {
   background: url(/images/bg.png);
 }
 
-.calendar-header {
-  height: 48px;
-}
-
-.calendar-main {
-  height: 93%;
+.calendar-wrapper {
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .time-wrapper {
@@ -160,8 +154,8 @@ a {
 }
 
 .time-grey {
-  width: 100%;
-  height: 100%;
+  width: 4.5%;
+  height: 48px;
 }
 
 .time {
@@ -177,19 +171,15 @@ a {
 
 .day {
   width: 31.7%;
+  max-width: 298px;
   margin: 0 0.2% 0 0;
-  height: 100%;
+  height: 714px;
   float: left;
   background: #fafafa;
 }
 
-.calendar-main .day {
-  height: 666px;
-  margin-top: 1px;
-}
-
 .day-header {
-  height: 100%;
+  height: 48px;
   border-top: 1px solid #eab156;
   border-left: 2px solid #dda346;
   border-right: 1px solid #a7792f;
