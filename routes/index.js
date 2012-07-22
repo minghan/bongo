@@ -23,7 +23,7 @@ function city_hash(city) {
 }
 
 exports.index = function(req, res) {
-  console.log(req.sessionID);
+  console.log('sessionID:' + req.sessionID);
   res.render('splash', {});
 };
 
@@ -31,10 +31,12 @@ exports.process = function(req, res) {
   var city = req.param('city', 'San Francisco, CA');
   var hash = city_hash(city);
   console.log('hash: ' + hash);
+  globals.trips.register(hash, city);
   res.redirect('/trips/' + hash);
 }
 
 exports.trips = function(req, res) {
+  console.log('sessionID:' + req.sessionID);
   res.render('trips', {});
 }
 

@@ -6,6 +6,7 @@
       <input id="add_place" class="search tk-proxima-nova" type="text" placeholder="Type in a place..."/>
       <div class="chat-wrapper">
         <div class="online">
+          <a href="#invite" rel="facebox">Invite someone</a>
           <h1>Currently online</h1>
           <div class="viewer usr1">
             Kah Hong Tay
@@ -15,6 +16,14 @@
           </div>
           <div class="viewer usr3">
             Dante Tran
+          </div>
+          <div id="invite">
+            <h1>Invite someone <span style="font-weight: normal">or share this link:</span> http://</h1>
+            <input type="text" name="email" class="email-invite tk-proxima-nova" placeholder="Enter your friend's email address"/>
+            <input type="submit" class="tk-proxima-nova" value="Send invite" />
+            <script type="text/javascript">
+              $(document).ready(function(){ $('input[type=text]').focus(); })
+            </script>
           </div>
         </div>
         <!--<h1>Chat</h1>
