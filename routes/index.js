@@ -58,6 +58,7 @@ exports.invite_process = function(req, res){
   }
 }
 
+*/
 
 exports.getIter = function(req, res) {
   var Iter = require('../models/iter');
@@ -66,21 +67,62 @@ exports.getIter = function(req, res) {
   var _ = require('underscore');
   var fs = require('fs');
 
+  /* foursquare */
   var foursquare = constants.foursquare;
-
   var city = "Sunnyvale,CA";
   var fsAPI = foursquare.venueAPI;
   var token = foursquare.access_token;
   var url = fsAPI+"near="+city+"&oauth_token="+token;
 
-  request(url, function(err, resp, body) {
+  // request(url, function(err, resp, body) {
+  //   var body = JSON.parse(body);
+  //   var first = body.response.groups[0].items[0].name;
+  //   res.render('foobar', { 
+  //         title : "FOO",
+  //         url : first
+  //       });
+  // });
+
+  /* Yelp */
+  var yelp_data = constants.yelp;
+  var yelpSearch = yelp_data.searchAPI;
+
+  var yelp = require("yelp").createClient({
+    consumer_key: yelp_data.consumer_key, 
+    consumer_secret: yelp_data.consumer_secret, 
+    token: yelp_data.token, 
+    token_secret: yelp_data.token_secret 
+  });
+
+  // yelp.search({ term: "food", location: "Sunnyvale, CA"}, function(err, data) {
+  //   var first = {
+  //   consumer_key: yelp_data.consumer_key, 
+  //   consumer_secret: yelp_data.consumer_secret, 
+  //   token: yelp_data.token, 
+  //   token_secret: yelp_data.token_secret 
+  //   }
+  //   res.render('foobar', { 
+  //         // title : JSON.stringify(first)
+  //         title : JSON.stringify(data)
+  //       });
+
+  // });
+  
+  /* Instagram */
+  var instagram = constants.instagram;
+  var lat = 37.372613;
+  var lng = -122.0265469;
+  var instagramAPI = instagram.geoAPI;
+  var instagram_token = instagram.access_token;
+  var instagram_url = instagramAPI+"lat="+lat+"&lng="+lng+"&access_token="+instagram_token;
+
+  request(instagram_url, function(err, resp, body) {
     var body = JSON.parse(body);
-    var first = body.response.groups[0].items[0].name;
+    // var first = body.response.groups[0].items[0].name;
     res.render('foobar', { 
-          title : "FOO",
-          url : first
+          // title : instagram_url
+          title : JSON.stringify(body)
+          // title : JSON.parse(body);
         });
   });
 }
-
-*/

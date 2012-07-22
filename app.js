@@ -43,7 +43,7 @@ app.get('/trips/:tripid', routes.trips);
 
 // app.get('/foobar/', routes.foobar);
 // app.get('/user/:id', routes.user);
-// app.get('/iter/', routes.getIter);
+app.get('/iter/', routes.getIter);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
