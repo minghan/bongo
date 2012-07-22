@@ -1,16 +1,11 @@
 @import url(reset.css);
 
 html { 
-  background: url(/images/splash.jpg) no-repeat center center fixed; 
+  background: url(/images/bg-image.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -57,18 +52,19 @@ a {
   margin-bottom: 50px;
 }
 
-/* -- Chat -- */
-.main-panel .chat-wrapper .online {
-  height: 150px;
-}
-
-.chat-wrapper h1 {
+.main-panel h1 {
   font-size: 15px;
   border-bottom: 1px solid #ddd;
   padding-left: 4%;
   padding-bottom: 10px;
   margin-left: -4%;
   width: 104%;
+}
+
+
+/* -- Chat -- */
+.main-panel .chat-wrapper .online {
+  height: 150px;
 }
 
 .chat-wrapper .viewer {
@@ -114,6 +110,7 @@ a {
 .calendar-main {
   height: 93%;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .time-wrapper {
