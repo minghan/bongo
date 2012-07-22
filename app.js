@@ -26,6 +26,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.post('/invite_friends', routes.invite_friends);
 
 app.get('/foobar/', routes.foobar);
 
