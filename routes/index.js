@@ -23,18 +23,22 @@ function city_hash(city) {
 }
 
 exports.index = function(req, res) {
+  console.log(req.sessionID);
+  res.render('splash', {});
+};
+
+exports.process = function(req, res) {
   var city = req.param('city', 'San Francisco, CA');
   var hash = city_hash(city);
   console.log('hash: ' + hash);
-  console.log(req.sessionID);
-  res.render('index', { title: 'Bongo: Collaborative Trip Planning' });
-};
-
-
-exports.invite_friends = function(req, res) {
-  res.render('invite_friends', { title: 'Bongo' });
+  res.redirect('/trips/' + hash);
 }
 
+exports.trips = function(req, res) {
+  res.render('trips', {});
+}
+
+/*
 exports.invite_process = function(req, res){
   var emailServer = globals.emailServer;
 
@@ -54,9 +58,6 @@ exports.invite_process = function(req, res){
   }
 }
 
-exports.foobar = function(req, res){
-  res.render('foobar', { title: 'Foobar' });
-};
 
 exports.getIter = function(req, res) {
   var Iter = require('../models/iter');
@@ -82,3 +83,4 @@ exports.getIter = function(req, res) {
   });
 }
 
+*/

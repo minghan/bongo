@@ -38,14 +38,12 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.post('/invite_friends', routes.invite_friends);
-app.post('/invite_process', routes.invite_process);
+app.post('/process', routes.process);
+app.get('/trips/:tripid', routes.trips);
 
-app.get('/foobar/', routes.foobar);
-
-app.get('/user/:id', routes.user);
-
-app.get('/iter/', routes.getIter);
+// app.get('/foobar/', routes.foobar);
+// app.get('/user/:id', routes.user);
+// app.get('/iter/', routes.getIter);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
