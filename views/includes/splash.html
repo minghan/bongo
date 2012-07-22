@@ -6,6 +6,12 @@
       <form action="/process" method="POST">
         <input id="destination" name="city" class="tk-proxima-nova" type="text" placeholder="Tell us where you want to go (e.g. San Francisco)" />
         <input id="destination-button" type="image" src="/images/arrow-button.png" />
+        <div id="dates">
+          <input type="text" class="tk-proxima-nova inputDate" style="width: 39%;" name="start_date" value="07/22/2012"/>
+          <img class="icon" src="/images/datepicker/calendar.png" />
+          <input type="text" class="tk-proxima-nova inputDate" style="width: 39.5%; margin-left: -3%;" name="end_date" value="07/24/2012"/>
+          <img class="icon" src="/images/datepicker/calendar.png" />
+        </div>
       </form>
     </p>
   </div>
@@ -13,9 +19,28 @@
 <script>
   jQuery(function () 
    {
+     $('#destination').focus();     
+     
+     $('.inputDate').DatePicker({
+     	  format:'m/d/Y',
+     	  date: $(this).val(),
+     	  current: $(this).val(),
+     	  starts: 1,
+     	  position: 'r',
+     	  onBeforeShow: function(){
+     		  $(this).DatePickerSetDate($(this).val(), true);
+     	  },
+     	  onChange: function(formated, dates){
+     		  $(this).val(formated);
+     		  $(this).DatePickerHide();
+     	  }
+     });
+     
      $('#destination').keyup(function() {
-       if ($('#destination').val().length > 0)
-         $('#destination-button').fadeIn();
+       if ($('#destination').val().length > 0) {
+         $('#destination-button').fadeIn(); 
+         $('#dates').fadeIn();
+       }         
      });
      
      jQuery("#destination").autocomplete({
