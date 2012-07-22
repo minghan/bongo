@@ -55,6 +55,7 @@ a:hover {
   height: 46px;
   margin-bottom: -16px;
   margin-left: -5px;
+  display: none;
 }
 
 
@@ -115,9 +116,9 @@ a:hover {
 
 .email-invite {
   border: 1px solid #ccc;
-  margin: 15px 5px 0 0;
+  margin: 15px 5px 10px 0;
   padding: 9px 10px;
-  width: 350px;
+  width: 470px;
   font-size: 15px;
   color: #333;;
 }
@@ -357,8 +358,9 @@ a:hover {
 
 /* -- Buttons -- */
 input[type=submit] {
-  font-size: 16px;
-  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 7px 16px 6px 15px;
   color: white !important;
   text-shadow: 0 1px 1px #3a3a3a;
   text-decoration: none;
@@ -368,6 +370,7 @@ input[type=submit] {
   box-shadow: 0 1px 0px #028014;
   -moz-box-shadow: 0 1px 0px #028014;
   -webkit-box-shadow: 0 1px 0px #028014;
+  margin-left: -1px;
   cursor: pointer;
 }
 

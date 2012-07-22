@@ -5,7 +5,7 @@
     <p>
       <form action="/process" method="POST">
         <input id="destination" name="city" class="tk-proxima-nova" type="text" placeholder="Tell us where you want to go (e.g. San Francisco)" />
-        <input type="image" src="/images/arrow-button.png" />
+        <input id="destination-button" type="image" src="/images/arrow-button.png" />
       </form>
     </p>
   </div>
@@ -13,6 +13,11 @@
 <script>
   jQuery(function () 
    {
+     $('#destination').keyup(function() {
+       if ($('#destination').val().length > 0)
+         $('#destination-button').fadeIn();
+     });
+     
      jQuery("#destination").autocomplete({
       source: function (request, response) {
        jQuery.getJSON(
