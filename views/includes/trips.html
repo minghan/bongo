@@ -30,8 +30,10 @@
                   $('input[type=text]').focus();
 
                   $('input[type=submit]').click(function() {
-                    console.log($(this).prev().val());
-                  })
+                    var s = $(this).prev().val();
+                    socket.emit('push_email_invites', {emails: s});
+                    jQuery(document).trigger('close.facebox');
+                  });
               })
             </script>
           </div>
@@ -85,6 +87,9 @@
           <p>FRIDAY &middot; 07/20</p>
           <div class="stitch"></div>
         </div>
+        <div id='day1'>
+        </div>
+        <!--
         <div class="event blank hr2"></div>
         <div class="event hr1">
           <div class="usr2">
@@ -114,17 +119,22 @@
             </div>
           </a>
         </div>
+        -->
       </div>
       <div class="day">
         <div class="day-header">
           <p>SATURDAY &middot; 07/21</p>
           <div class="stitch"></div>
+          <div id='day2'>
+          </div>
         </div>
       </div>
       <div class="day">
         <div class="day-header">
           <p>SUNDAY &middot; 07/22</p>
           <div class="stitch"></div>
+          <div id='day3'>
+          </div>
         </div>
       </div>
     </div>  
