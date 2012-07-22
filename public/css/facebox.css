@@ -16,12 +16,12 @@
   -webkit-box-shadow:0 0 18px rgba(0,0,0,0.4);
   -moz-box-shadow:0 0 18px rgba(0,0,0,0.4);
   box-shadow:0 0 18px rgba(0,0,0,0.4);
-  width: 540px;
+  width: 560px;
 }
 
 #facebox .content {
   display:table;
-  width: 500px;
+  width: 520px;
   padding: 20px;
   background: #fff;
   -webkit-border-radius:4px;
@@ -78,4 +78,28 @@
 .facebox_overlayBG {
   background-color: #000;
   z-index: 99;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 17px;
+}
+
+p {
+  font-size: 16px;
+  color: #999;
+}
+
+.photos {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;;
+}
+
+.photos img {
+  width: 100px;
 }
