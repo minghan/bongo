@@ -117,6 +117,27 @@ io.sockets.on('connection', function (socket) {
     }
   });
 
+
+  socket.on('push_email_invites', function(data) {
+    var emails = data.emails.split(',');
+      for (i in emails) {
+        var email = emails[i];
+        var txt = 'Hi, Someone has invited you to collaborate on a trip. ';
+        txt = txt + 'Visit http://trybongo.com/trips/' + tripID + ' to get started. ';
+        txt = txt + 'Have fun!';
+        var message = {
+          text: txt,
+          from: 'donotreply@trybongo.com',
+          to: email,
+          subject: 'Invitation to collaborate on a trip'
+        };
+
+        globals.emailServer.send(message, function(err, message) {
+          console.log(err || message)
+        });
+      }
+  });
+
   socket.on('disconnect', function() {
     console.log(connID + " disconnected from " + tripID);
   });

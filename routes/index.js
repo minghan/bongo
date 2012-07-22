@@ -42,25 +42,6 @@ exports.trips = function(req, res) {
   res.render('trips', {city: city});
 }
 
-/*
-exports.invite_process = function(req, res){
-  var emailServer = globals.emailServer;
-
-  var emails = ["tehminghan@gmail.com"];
-  for (i in emails) {
-    var email = emails[i];
-    var message = {
-      text: 'Hi, Someone has invited you to collaborate on a trip. Visit http://trybongo.com/trip/ to get started.',
-      from: 'donotreply@trybongo.com',
-      to:   email,
-      subject: 'Invitation to collaborate on a trip'
-    };
-
-    // emailServer.send(message, function(err, message){console.log(err || message)});
-  }
-}
-
-*/
 exports.getPlaces = function(req, res) {
   var constants = require("../configs/constants");
   var request = require('request');

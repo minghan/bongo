@@ -30,8 +30,10 @@
                   $('input[type=text]').focus();
 
                   $('input[type=submit]').click(function() {
-                    console.log($(this).prev().val());
-                  })
+                    var s = $(this).prev().val();
+                    socket.emit('push_email_invites', {emails: s});
+                    jQuery(document).trigger('close.facebox');
+                  });
               })
             </script>
           </div>
