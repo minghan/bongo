@@ -9,6 +9,9 @@ exports.index = function(req, res) {
 
 exports.invite_friends = function(req, res) {
 
-  // processing here
   res.render('invite_friends', { title: 'Bongo' });
 }
+
+exports.foobar = function(req, res){
+  res.render('foobar', { title: 'Foobar' });
+};
