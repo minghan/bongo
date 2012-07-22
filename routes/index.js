@@ -28,9 +28,11 @@ exports.index = function(req, res) {
 
 exports.process = function(req, res) {
   var city = req.param('city', 'San Francisco, CA');
+  var start_date = req.param('start_date', '07/20/2012');
+  var end_date = req.param('end_date', '07/22/2012');
   var hash = city_hash(city);
   console.log('hash: ' + hash);
-  globals.trips.register(hash, city);
+  globals.trips.register(hash, city, start_date, end_date);
   res.redirect('/trips/' + hash);
 }
 
@@ -44,7 +46,11 @@ exports.trips = function(req, res) {
   var trip = globals.trips.getTrip(tid);
   var city = (trip === undefined) ? "Not Found" : trip.city;
   console.log("parsed: " + city);
-  res.render('trips', {city: city});
+  if (trip === undefined) {
+    res.render('trips', {city: city, start_date: null, end_date: null});
+  }
+  res.render('trips', {
+    city: city, start_date: trip.start_date, end_date: trip.end_date});
 }
 
 exports.getPlaces = function(req, res) {
@@ -82,15 +88,22 @@ exports.getPlaces = function(req, res) {
   var url = fsAPI+"near="+city+"&oauth_token="+token+"&limit="+50;
 
   request(url, function(err, resp, body) {
-    var body = JSON.parse(body);
-    var items = body.response.groups[0].items;
-    var list = [];
-    for (var i=0; i<items.length; i++) {
-      if(items[i].venue.name.toLowerCase().indexOf(query.toLowerCase()) != -1) {
-        list.push(items[i].venue.name);
+    try {
+      var body = JSON.parse(body);
+      if (body.response.groups.length <= 0) {
+        res.send([]);
       }
+      var items = body.response.groups[0].items;
+      var list = [];
+      for (var i=0; i<items.length; i++) {
+        if(items[i].venue.name.toLowerCase().indexOf(query.toLowerCase()) != -1) {
+          list.push(items[i].venue.name);
+        }
+      }
+      res.send(list);
+    } catch(err) {
+      res.send([]);
     }
-    res.send(list);
   });
 
   /* Yahoo */
@@ -144,22 +157,29 @@ exports.getData = function(req, res) {
       "foursquare" : null,
       "instagram" : null
     };
-    var body = JSON.parse(body);
-    var items = body.response.groups[0].items;
-    for (var i=0; i< items.length; i++) {
-      if(items[i].venue.name == name) {
-        obj["foursquare"] = items[i];
-        var lat = items[i].venue.location.lat;
-        var lng = items[i].venue.location.lng;
-        var instagram_url = instagramAPI+"lat="+lat+"&lng="+lng+"&access_token="+instagram_token;
+    try {
+      var body = JSON.parse(body);
+      var items = body.response.groups[0].items;
+      for (var i=0; i< items.length; i++) {
+        if(items[i].venue.name == name) {
+          obj["foursquare"] = items[i];
+          var lat = items[i].venue.location.lat;
+          var lng = items[i].venue.location.lng;
+          var instagram_url = instagramAPI+"lat="+lat+"&lng="+lng+"&access_token="+instagram_token;
 
-        request(instagram_url, function(err, resp, body) {
-          var body = JSON.parse(body);
-          obj["instagram"] = body;
-          res.send(obj);
-        });
-        break;
+          request(instagram_url, function(err, resp, body) {
+            var body = JSON.parse(body);
+            obj["instagram"] = body;
+            res.send(obj);
+          });
+          break;
+        }
       }
+    } catch(err) {
+      res.send({
+        "foursquare" : null,
+        "instagram" : null
+      });
     }
   });
 }

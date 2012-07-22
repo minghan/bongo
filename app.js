@@ -77,6 +77,7 @@ io.sockets.on('connection', function (socket) {
     } else {
 
       var current_users = [];
+      var current_places = trip.places;
       
       for (var usr in trip.users) {
         current_users.push({
@@ -89,7 +90,8 @@ io.sockets.on('connection', function (socket) {
       socket.emit('init_feedback', {
         connID: theuser.connID,
         handle: theuser.handle,
-        current_users: current_users
+        current_users: current_users,
+        current_places : current_places
       });
       
       // broadcast
@@ -107,7 +109,9 @@ io.sockets.on('connection', function (socket) {
   socket.on('push_add_place', function(data) {
     if (trip !== undefined) {
     
-      var p = trip.registerPlace(data.place, connID);
+      var _p = trip.registerPlace(data.place, connID, data.dump);
+      var p = _p.place;
+      var inpos = _p.inpos;
 
       // broadcast
       for (var usr in trip.users) {
@@ -117,7 +121,6 @@ io.sockets.on('connection', function (socket) {
       }
     }
   });
-
 
   socket.on('push_email_invites', function(data) {
     var emails = data.emails.split(',');

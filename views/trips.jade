@@ -5,6 +5,9 @@ block head_extra
 
   script
     var city = "#{city}";
+    var start_date = "#{start_date}";
+    var end_date = "#{end_date}";
+
     var socket = io.connect('http://127.0.0.1:3000');
 
     var current_users = [];
@@ -115,6 +118,10 @@ block head_extra
             var usr = data.current_users[i];
             add_user(usr);
         }
+        for (i in data.current_places) { 
+            var p = data.current_places[i];
+            add_place(p);
+        }
       });
 
       socket.emit('push_set_handle', {handle: 'mteh'});
@@ -141,18 +148,23 @@ block head_extra
 
       /*console.log(socket.socket.transport.sessid);*/
 
-
       $("#add_place").keyup(function(event){
         if(event.keyCode == 13){
           var val = $('#add_place').val();
           if (val != '') {
             $('#add_place').val('');
-            socket.emit('push_add_place', {place: val});
+
+            // fetch the shit
+            var url = "/getData/" + city + "/" + val;
+            /*var url = "https://api.foursquare.com/v2/venues/explore?near=" + encodeURI(city) + "&query=" + encodeURI(val) + "&oauth_token=SD2I3TTWPG2FW13WOCXW5UJ5LCJKSSCR1HCRU5LUYVOA20SZ&limit=50";*/
+
+            $.get(url, function(data) {
+                console.log(data);
+                socket.emit('push_add_place', {place: val, dump: data});
+            });
           }
         }
       });
-
-
     });
 
 
