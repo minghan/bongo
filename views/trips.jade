@@ -5,6 +5,9 @@ block head_extra
 
   script
     var city = "#{city}";
+    var start_date = "#{start_date}";
+    var end_date = "#{end_date}";
+
     var socket = io.connect('http://127.0.0.1:3000');
 
     var current_users = [];

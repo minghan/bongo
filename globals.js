@@ -75,10 +75,12 @@ function Place(place, connID, dump)
   console.log(this.lng);
 }
 
-function Trip(tripID, city)
+function Trip(tripID, city, start_date, end_date)
 {
   this.tripID = tripID;
   this.city = city;
+  this.start_date = start_date;
+  this.end_date = end_date;
   this.users = {};
   this.places = [];
 
@@ -138,8 +140,8 @@ module.exports.trips = {
 
   trips: {},
   
-  register: function(tripID, city) {
-    this.trips[tripID] = new Trip(tripID, city);
+  register: function(tripID, city, start_date, end_date) {
+    this.trips[tripID] = new Trip(tripID, city, start_date, end_date);
     console.log("registered: " + tripID);
   },
 
