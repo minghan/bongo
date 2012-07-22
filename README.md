@@ -1,6 +1,5 @@
 bongo
 =====
 
-Use Bongo
+Try Bongo
 
-Ignore node_modules, install dependencies on your machine 

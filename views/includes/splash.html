@@ -4,9 +4,60 @@
     <h1>Plan your next vacation here.</h1>
     <p>
       <form action="/process" method="POST">
-        <input class="tk-proxima-nova" type="text" placeholder="Tell us where you want to go (e.g. San Francisco)" />
+        <input id="destination" name="city" class="tk-proxima-nova" type="text" placeholder="Tell us where you want to go (e.g. San Francisco)" />
         <input type="image" src="/images/arrow-button.png" />
       </form>
     </p>
   </div>
 </div>
+<script>
+  jQuery(function () 
+   {
+     jQuery("#destination").autocomplete({
+      source: function (request, response) {
+       jQuery.getJSON(
+        "http://gd.geobytes.com/AutoCompleteCity?callback=?&filter=US&q="+request.term,
+        function (data) {
+         response(data);
+        }
+       );
+      },
+      minLength: 3,
+      select: function (event, ui) {
+        var value = ui.item.value;
+        value = value.substr(0, value.lastIndexOf(","));
+        jQuery("#destination").val(value);
+        $('li a.ui-corner-all').removeClass('highlight');
+        $(this).addClass('highlight');
+        return false;
+      },
+      focus: function( event, ui ) {
+        var label = ui.item.label;
+        label = label.substr(0, label.lastIndexOf(","));
+        $("#destination").val( label );
+        $('li a.ui-corner-all').removeClass('highlight');
+        $('li a.ui-corner-all').each(function(idx,val) {
+          var val = $(this).text();
+          if(val == label) {
+            $(this).addClass('highlight');
+          }
+        });
+        return false;
+      },
+      open: function (event, ui) {
+        $('.ui-autocomplete').css({ 'width': '501px' });
+        var query = $(this).val();
+        $('li a.ui-corner-all').addClass('tk-proxima-nova').each(function(data, val) {
+          var choice = $(this).text();
+          choice = choice.substr(0, choice.lastIndexOf(","));
+         $(this).html(choice.replace(query, "<b>"+query+"</b>"));
+        })
+       jQuery(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+      },
+      close: function () {
+       jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+      }
+     });
+     jQuery("#destination").autocomplete("option", "delay", 100);
+    });
+</script>
