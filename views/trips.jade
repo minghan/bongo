@@ -24,7 +24,7 @@ block head_extra
         current_users.push(data);
       }
 
-      var placeCount = 0;
+      var placeCount = 1;
       var dayCount = 0;
       function add_place(data) {
         
@@ -36,24 +36,70 @@ block head_extra
                 break;
             }
         }
-
+        
         var div1 = $("<div></div>");
         div1.addClass('event');
         div1.addClass('hr3');
-        var div2 = $("<div></div>");
+        var anchor = $('<a href="#dialog" rel="facebox"></a>');
+        var div2 = $('<div title="' + data.place + '"></div>');
         div2.addClass('usr' + num.toString());
+        div2.addClass('calendar-event');        
         var div3 = $("<div></div>");
-        div3.addClass('event-item');
+        div3.addClass('event-item');          
         var p = $('<p></p>');
         p.text(data.place);
-        div3.append(p);
+
+        div3.append(p);                       
         div2.append(div3);
-        div1.append(div2);
+        anchor.append(div2);
+        div1.append(anchor);        
 
         div1.css('display', 'none');
         $("#day1").append(div1);
+        
+        /* Facebox */
+        $('a[rel*=facebox]').facebox();     
 
-        div1.slideDown('slow', function(){});
+        div1.slideDown(200, function(){
+          
+          // If event is clicked
+          $('.event .calendar-event').click(function() {
+            $('#place #title').html('');
+            $('#place p').html('');
+            $('#place #loading').show();
+            $('#place .photos img').remove();
+            
+            var city = encodeURIComponent($('#h1_city').html());
+            var place = encodeURIComponent($(this).attr('title'));
+            
+            $.get('/getData/' + city + '/' + place, function(data) {
+              $('#place #loading').hide();
+              $('#place #title').html(data.foursquare.venue.name);
+
+              if (data.foursquare.venue.location.address) {
+                var address = data.foursquare.venue.location.address + ', ' + data.foursquare.venue.location.city + ', ' + data.foursquare.venue.location.state + ' ' + data.foursquare.venue.location.postalCode;
+                $('#place p').html(address  + ' &nbsp; &middot; &nbsp; ' + data.foursquare.venue.stats.checkinsCount + ' check-ins');
+                $('#place #map').attr('src', 'http://maps.google.com/maps/api/staticmap?center=' + address + '&zoom=15&size=520x250&markers=color:pink%7C' + address + '&sensor=true');
+              } else {
+                $('#place p').html(data.foursquare.venue.stats.checkinsCount + ' check-ins');
+              }
+                            
+              photos = new Array();
+              photos = data.instagram.data;
+              
+              for (var i = 0; i < photos.length; i++) {
+                if (i < 10) {
+                  var photo = $('<img />');
+                  photo.attr('src', photos[i].images.thumbnail.url);                
+                  $('#place .photos').append(photo);
+                }                
+              }
+              
+              $('#place .photos').show();
+
+            });
+          });
+        });        
       }
 
       var tid = window.location.pathname.split('/');

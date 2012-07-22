@@ -52,11 +52,11 @@ a:hover {
 }
 
 #destination {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 #dates {
-  margin-top: 15px;
+  margin-top: 5px;
   display: none;
 }
 
@@ -274,6 +274,10 @@ a:hover {
   color: #333;
 }
 
+.event-item img {
+  display: none;
+}
+
 .event a {
   text-decoration: none;
 }
@@ -402,7 +406,7 @@ input[type=submit]:hover {
 
 /* Splash page */
 li.ui-menu-item {
-  background: #fff;
+  background: #f0f0f0;
 }
 
 a.ui-corner-all:hover {

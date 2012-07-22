@@ -3,7 +3,7 @@
     <div class="main-panel">
       <img class="logo" src='/images/logo.png' />
       <h1 style="border-bottom: 0;">Plan a trip for <span id='h1_city'>San Francisco</span></h1>
-      <input id="add_place" class="search tk-proxima-nova" type="text" placeholder="Type in a place..."/>
+      <input id="add_place" class="search tk-proxima-nova" type="text" placeholder="Type in a place..."/><img id="search-loading" style="float: right; margin-top: -83px; position: relative; z-index: 10; margin-right: -3px; width: 20px; display: none;" src="/images/loading.gif" />
       <div class="chat-wrapper">
         <div class="online">
           <a href="#invite" rel="facebox">Invite someone</a>
@@ -120,6 +120,19 @@
           </a>
         </div>
         -->
+        <div id="dialog" class="tk-proxima-nova" style="display: none;">
+          <div id="place">
+            <center>
+              <img id="loading" src="/images/loading.gif" style="margin-top: 403px;"/>
+            </center>
+            <h1 id="title"></h1>
+            <p></p>
+            <img id="map" />
+            <div class="photos">
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
       <div class="day">
         <div class="day-header">

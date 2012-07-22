@@ -32,9 +32,12 @@ jQuery(function ()
       });
       return false;
     },
+    search: function(event, ui) {
+      $('#search-loading').show();
+    },
     open: function (event, ui) {
       $('.ui-autocomplete').css({ 'width': '335px', 'border': '2px solid #ddd' });
-            
+      $('#search-loading').show();      
       var query = $(this).val();
       $('li a.ui-corner-all').addClass('tk-proxima-nova').each(function(data, val) {
         var choice = $(this).text();
@@ -45,6 +48,7 @@ jQuery(function ()
     },
     close: function () {
      jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+     $('#search-loading').hide();
     }
    });
    jQuery("#add_place").autocomplete("option", "delay", 100);

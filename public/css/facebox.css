@@ -81,12 +81,13 @@
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
 h2 {
   font-size: 17px;
+  line-height: 1.5;
 }
 
 p {
@@ -94,12 +95,18 @@ p {
   color: #999;
 }
 
+#map {
+  padding: 20px 0 0;
+}
+
 .photos {
-  margin-top: 50px;
+  margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid #ddd;;
+  border-top: 1px solid #ddd;
+  display: none;
 }
 
 .photos img {
   width: 100px;
+  margin: 2px !important;
 }

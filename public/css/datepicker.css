@@ -200,3 +200,7 @@ td {
 td a {
   margin: 2px 2px 2px 0;
 }
+
+th.datepickerWeek {
+  opacity: 0.2;
+}
